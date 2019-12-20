@@ -50,12 +50,12 @@ namespace _2048
                         tempList.Clear();
                         for (int j = 0; j < sizeBoard - 1; j++)
                         {
-                            if (j < 1  && cells[(i * sizeBoard) + j].value == cells[(i * sizeBoard) + j + 3].value)
+                            if (j < 1  && cells[(i * sizeBoard) + j + 1].value == 0 && cells[(i * sizeBoard) + j + 2].value == 0 && cells[(i * sizeBoard) + j].value == cells[(i * sizeBoard) + j + 3].value)
                             {
                                 cells[(i * sizeBoard) + j].value *= 2;
                                 cells[(i * sizeBoard) + j + 3].value = 0;
                             }
-                            else if (j < 2 && cells[(i * sizeBoard) + j].value == cells[(i * sizeBoard) + j + 2].value)
+                            else if (j < 2 && cells[(i * sizeBoard) + j + 1].value == 0  && cells[(i * sizeBoard) + j].value == cells[(i * sizeBoard) + j + 2].value)
                             {
                                 cells[(i * sizeBoard) + j].value *= 2;
                                 cells[(i * sizeBoard) + j + 2].value = 0;
@@ -84,6 +84,25 @@ namespace _2048
                         break;
                     case Direction.Up:
                         tempList.Clear();
+                        for (int j = 0; j < sizeBoard - 1; j++)
+                        {
+                            if(j < 1 && cells[i + (j * sizeBoard)].value == cells[i + (j * sizeBoard) + (3 * sizeBoard)].value)
+                            {
+                                cells[i + (j * sizeBoard)].value *= 2;
+                                cells[i + (j * sizeBoard) + (3 * sizeBoard)].value = 0;
+                            }
+                            else if (j < 2 && cells[i + (j * sizeBoard)].value == cells[i + (j * sizeBoard) + (2 * sizeBoard)].value)
+                            {
+                                cells[i + (j * sizeBoard)].value *= 2;
+                                cells[i + (j * sizeBoard) + (2 * sizeBoard)].value = 0;
+                            }
+                            else if (cells[i + (j * sizeBoard)].value == cells[i + (j * sizeBoard) + sizeBoard].value)
+                            {
+                                cells[i + (j * sizeBoard)].value *= 2;
+                                cells[i + (j * sizeBoard) + sizeBoard].value = 0;
+                            }
+
+                        }
                         for (int j = 0; j < sizeBoard; j++)
                         {
                             if (cells[i + (j * sizeBoard)].value > 0)
@@ -102,12 +121,12 @@ namespace _2048
                         tempList.Clear();
                         for (int j = 0; j < sizeBoard - 1; j++)
                         {
-                            if(j < 1 && cells[(i * sizeBoard) + sizeBoard - 1 - j].value == cells[(i * sizeBoard) + sizeBoard - 4 - j].value)
+                            if(j < 1 && cells[(i * sizeBoard) + sizeBoard - 2 - j].value == 0 && cells[(i * sizeBoard) + sizeBoard - 3 - j].value == 0 && cells[(i * sizeBoard) + sizeBoard - 1 - j].value == cells[(i * sizeBoard) + sizeBoard - 4 - j].value)
                             {
                                 cells[(i * sizeBoard) + sizeBoard - 1 - j].value *= 2;
                                 cells[(i * sizeBoard) + sizeBoard - 4 - j].value = 0;
                             }
-                            else if (j < 2 && cells[(i * sizeBoard) + sizeBoard - 1 - j].value == cells[(i * sizeBoard) + sizeBoard - 3 - j].value)
+                            else if (j < 2 && cells[(i * sizeBoard) + sizeBoard - 2 - j].value ==0 && cells[(i * sizeBoard) + sizeBoard - 1 - j].value == cells[(i * sizeBoard) + sizeBoard - 3 - j].value)
                             {
                                 cells[(i * sizeBoard) + sizeBoard - 1 - j].value *= 2;
                                 cells[(i * sizeBoard) + sizeBoard - 3 - j].value = 0;
